@@ -9,12 +9,13 @@
 ##############################################################
 
 # Set Global Variables
-_NewFile="Photos$(date +%Y+%m+%d+%r)"
+_NewFile="Media$(date +%Y_%m_%d_%H%M%S)"
+
 
 ##############################################################
 
 # Here we Create a time stamped file to store the photos from the android device
-
+clear
 cd ~/Pictures
 mkdir $_NewFile
 cd $_NewFile
@@ -22,8 +23,10 @@ cd $_NewFile
 ##############################################################
 
 # Here we take the users android device IP address and download
-# the photos using the ftp connection
+# the photos and videos using the ftp connection then the script
+# will move any movie files into a new Movies foler.
 
+echo "This script will pull your photos and movies from your android device.  It will also move any movies to a new Movies folder inside your Pictures folder."
 while true; do
 	echo "Please enter your androids current IP Address."
 	read _IpAddr
@@ -31,13 +34,18 @@ while true; do
 	echo "Is your IP address correct? y/n "
 	read yn
 	if [ "$yn" = "y" ];
-		then 
-			echo "Now going to download your photos and albums from your android device to your local machines Pictures folder."
+		then
+			echo "Now going to download your photos, videos, and albums from your android device to your local machines Pictures folder."
 			sleep 3
 			wget -r -l 3 ftp://"$_IpAddr":3721/DCIM/
+			cd ~/Pictures/"$_NewFile"/*/DCIM/
+			mkdir Movies
+			_MovieTitles="$( find . -iname "*.mp4" -print )"
+			mv "$_MovieTitles" Movies/
 			break
 	fi
 done
+
 
 ##############################################################
 
@@ -46,10 +54,10 @@ cd ~/Pictures
 ##############################################################
 
 # Here we ask the user if they have a local server that they want
-# to copy their photos onto from their local machine
+# to copy their photos and videos onto from their local machine
 
 while true; do
-	echo "Do you want to copy your photos from you local machine to your local server? y/n " 
+	echo "Do you want to copy your photos and videos from you local machine to your local server? y/n "
 	read _Rspns
 	case $_Rspns in
 		[Yy]* ) while true; do
@@ -60,7 +68,8 @@ while true; do
 			read _SvrRspns
 				if [ "$_SvrRspns" = "y" ];
 					then
-						echo "Now going to secure copy your photos to your local server location."
+						echo "Now going to secure copy your photos and videos to your local server location."
+						sleep 3
 						scp -r "$_NewFile" "$_SvrAddr"
 						echo "All done."
 						break
