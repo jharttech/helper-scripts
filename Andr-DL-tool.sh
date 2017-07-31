@@ -14,8 +14,17 @@ _NewFile="Media$(date +%Y_%m_%d_%H%M%S)"
 
 ##############################################################
 
-# Here we Create a time stamped file to store the photos from the android device
+# Display logo
 clear
+cat jhart_shell_logo.txt
+echo -e "\n"
+echo "####################################################################"
+echo "####################################################################"
+echo -e "\n"
+#############################################################
+
+# Here we Create a time stamped file to store the photos from the android device
+
 cd ~/Pictures
 mkdir $_NewFile
 cd $_NewFile
@@ -25,8 +34,11 @@ cd $_NewFile
 # Here we take the users android device IP address and download
 # the photos and videos using the ftp connection then the script
 # will move any movie files into a new Movies foler.
-
+#set -e
 echo "This script will pull your photos and movies from your android device.  It will also move any movies to a new Movies folder inside your Pictures folder."
+echo -e "\n"
+echo "########################################################################"
+echo "########################################################################"
 while true; do
 	echo "Please enter your androids current IP Address."
 	read _IpAddr
@@ -42,8 +54,10 @@ while true; do
 			mkdir Movies
 			_MovieTitles="$( find . -iname "*.mp4" -print )"
 			mv "$_MovieTitles" Movies/
-			break
+			break	
+	
 	fi
+
 done
 
 
@@ -57,6 +71,10 @@ cd ~/Pictures
 # to copy their photos and videos onto from their local machine
 
 while true; do
+	echo -e "\n"
+	echo "###################################################################"
+	echo "###################################################################"
+	echo -e "\n"
 	echo "Do you want to copy your photos and videos from you local machine to your local server? y/n "
 	read _Rspns
 	case $_Rspns in
@@ -77,13 +95,17 @@ while true; do
 			done
 			break;;
 		[Nn]* ) echo "All done."
-			exit;;
+			break;;
 		* ) echo "Please answer with (y) for yes or (n) for no."
 	esac
 done
 
 ##############################################################
+# Done Message
 
+echo "Your transfers are complete.  Enjoy and Thank You!  -Jhart"
+sleep 3
+#############################################################
 exit 
 
 
