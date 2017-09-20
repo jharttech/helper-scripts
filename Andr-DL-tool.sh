@@ -3,7 +3,7 @@
 
 # This is a simple script to help with the wireless download
 # of photos from an Android device to a local machine, then
-# with the option to secure copy these photos to a local 
+# with the option to secure copy these photos to a local
 # server.
 
 ##############################################################
@@ -54,8 +54,8 @@ while true; do
 			mkdir Movies
 			_MovieTitles="$( find . -iname "*.mp4" -print )"
 			mv "$_MovieTitles" Movies/
-			break	
-	
+			break
+
 	fi
 
 done
@@ -106,7 +106,7 @@ done
 echo "Your transfers are complete.  Enjoy and Thank You!  -Jhart"
 sleep 3
 #############################################################
-exit 
+exit
 
 
 
