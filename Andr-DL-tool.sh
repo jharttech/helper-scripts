@@ -100,6 +100,40 @@ while true; do
 	esac
 done
 
+
+while true; do
+	echo -e "\n"
+	echo "####################################################################"
+	echo "####################################################################"
+	echo "Do you want to remove photos and movies recently added in file "$_NewFile"?  If you did not back up these files to a local server in the previous step you will probably want to answer NO. (WARNING... answering yes will remove all photos and movies in newly created "$_NewFile" from your local machine." y/n?
+	read _FinalRspns
+	case $_FinalRspns in
+		[Yy]* ) while true; do
+			echo "You have indicated that you want to remove all photos and movies in newly created "$_NewFile" from your local machine.  If this is correct please type 'Yes, please!'.  If not please type 'NO!'"
+			read _FinalRspnsTwo
+			if [ "$_FinalRspnsTwo" == "Yes, please!" ];
+			then
+				echo "Now going to remove "$_NewFile"."
+					sleep 3
+					cd ~/Pictures
+					rm -rf "$_NewFile"
+					echo "All done."
+					break
+			else
+				if [ "$_FinalRspnsTwo" == "NO!" ];
+				then
+					echo "All done."
+					break
+				fi
+			fi
+		done
+		break;;
+		[Nn]* ) echo "All done."
+			break;;
+		* ) echo "Please answer with (y) or (n) for no."
+	esac
+done
+
 ##############################################################
 # Done Message
 
