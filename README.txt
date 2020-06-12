@@ -13,7 +13,7 @@ How to use Andr-DL-tool script to help speed up the process of copying pictures 
 Needed software:
 
 
-    ES File Explorer installed on Android Device:  https://play.google.com/store/apps/details?id=com.estrongs.android.pop&hl=en
+    File Explorer File Manager installed on Android Device:  https://play.google.com/store/apps/details?id=com.file.manager.filebrowser&hl=en_US
 
 
     Andr-DL-tool zip downloaded to your machine:  https://github.com/jharttech/helper-scripts/archive/master.zip

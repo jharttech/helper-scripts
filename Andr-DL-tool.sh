@@ -49,7 +49,7 @@ while true; do
 		then
 			echo "Now going to download your photos, videos, and albums from your android device to your local machines Pictures folder."
 			sleep 3
-			wget -r -l 3 ftp://"$_IpAddr":3721/DCIM/
+			wget -r -l 3 ftp://"$_IpAddr":2211/DCIM/
 			cd ~/Pictures/"$_NewFile"/*/DCIM/
 			mkdir Movies
 			_MovieTitles="$( find . -iname "*.mp4" -print )"
